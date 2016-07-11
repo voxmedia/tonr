@@ -1,3 +1,17 @@
 body {
-  /*background: red;*/
+  margin: 0 auto;
+  padding: 0;
+  max-width: $max-width;
+  font-family: $font-family;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+svg {
+  fill: currentColor;
 }
