@@ -1,1 +1,15 @@
+// Load fonts
+@font-face {
+    font-family: 'montserrat';
+    src: url('/assets/fonts/montserrat.woff2') format('woff2'),
+         url('/assets/fonts/montserrat.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 // Base styles (reset but not really)
+body {
+  margin: 0 auto;
+  padding: 0;
+  max-width: $max-width;
+}
