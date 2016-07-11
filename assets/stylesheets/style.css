@@ -64,18 +64,36 @@ svg {
 }
 
 .m-gallery {
-
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .m-gallery__action {
-  width: 33%;
+  flex: 1;
   margin: 0;
   padding: 0;
   border: none;
+  margin: .5px;
+  min-width: 30%;
+}
+@media (min-width: 600px) {
+  .m-gallery__action {
+    min-width: 20%;
+  }
+}
+
+.m-gallery__action:focus {
+  box-shadow: 0 0 0 2px #f6aa1c;
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  z-index: 1;
 }
 
 .m-gallery__img {
   width: 100%;
+  display: block;
 }
 
 /*////////////*/
