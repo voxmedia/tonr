@@ -1,0 +1,85 @@
+/*
+$font-family: montserrat, sans-serif;
+$line-height: 1.2;
+
+$max-width: 800px;
+$img-border: 1px;
+
+$primary:       #f6aa1c;
+$bkg:           #2c2c2c;
+$bkg-alt:       #111;
+$text:          #fff;
+
+@import 'base';
+@import 'modules';
+*/
+
+/*///////////////////*/
+/* BASE (BAE) STYLES */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Montserrat, sans-serif;
+  box-sizing: border-box;
+  background-color: #2c2c2c;
+  color: #fff;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+svg {
+  fill: currentColor;
+  height: 1em;
+}
+
+/*////////*/
+/* LAYOUT */
+.l-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/*/////*/
+/* NAV */
+.m-nav {
+  background-color: #111;
+  padding: 2px 12px;
+}
+
+.m-img {
+
+}
+
+.m-img__canvas {
+  width: 100%;
+}
+
+.m-upload {
+
+}
+
+.m-gallery {
+
+}
+
+.m-gallery__action {
+  width: 33%;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.m-gallery__img {
+  width: 100%;
+}
+
+/*////////////*/
+/* MAIN PHOTO */
+
+/*/////////*/
+/* GALLERY */
