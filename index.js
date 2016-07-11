@@ -8,7 +8,7 @@ app.set('view engine', 'handlebars');
 app.use(express.static(__dirname + '/assets'));
 
 app.get('/', function (req, res) {
-    res.render('index', { title: 'tonr'});
+    res.render('index', { title: 'tonr' });
 });
 
 app.listen(process.env.PORT || 3000);
