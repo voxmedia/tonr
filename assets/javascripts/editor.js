@@ -115,14 +115,23 @@
           var pixels = ctx.getImageData(0,0,c.width,c.height);
           var data = pixels.data;
 
-          var brightness = -10;
+          var brightness = 10;
           for (var i=0; i < data.length; i += 4) {
             data[i] += brightness;
             data[i+1] += brightness;
             data[i+2] += brightness;
           }
 
-          var contrast = 56;
+          ctx.putImageData(pixels,0,0);
+
+          ctx.fillStyle = "#0646c8";
+          ctx.globalAlpha = 0.4;
+          ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
+
+          var pixels = ctx.getImageData(0,0,c.width,c.height);
+          var data = pixels.data;
+
+          var contrast = 40;
           var factor = ( 259 * (contrast + 255)) / (255 * (259 - contrast) );
           for (var i = 0; i < data.length; i += 4) {
               data[i] = factor * (data[i] - 128) + 128;
@@ -131,22 +140,10 @@
           };
 
           ctx.putImageData(pixels,0,0);
-
-          ctx.fillStyle = "#0646c8";
-          ctx.globalAlpha = 0.4;
-          ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
         },
         oakland: function() {
           var pixels = ctx.getImageData(0,0,c.width,c.height);
           var data = pixels.data;
-
-          var contrast = 70;
-          var factor = ( 259 * (contrast + 255)) / (255 * (259 - contrast) );
-          for (var i = 0; i < data.length; i += 4) {
-              data[i] = factor * (data[i] - 128) + 128;
-              data[i+1] = factor * (data[i+1] - 128) + 128;
-              data[i+2] = factor * (data[i+2] - 128) + 128;
-          };
 
           var sv = 1.4; // saturation value. 0 = grayscale, 1 = original
 
@@ -183,19 +180,32 @@
           ctx.fillStyle = "#ff4e4e";
           ctx.globalAlpha = 0.4;
           ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
+
+          var pixels = ctx.getImageData(0,0,c.width,c.height);
+          var data = pixels.data;
+
+          var contrast = 30;
+          var factor = ( 259 * (contrast + 255)) / (255 * (259 - contrast) );
+          for (var i = 0; i < data.length; i += 4) {
+              data[i] = factor * (data[i] - 128) + 128;
+              data[i+1] = factor * (data[i+1] - 128) + 128;
+              data[i+2] = factor * (data[i+2] - 128) + 128;
+          };
+
+          ctx.putImageData(pixels,0,0);
         },
         la: function() {
           var pixels = ctx.getImageData(0,0,c.width,c.height);
           var data = pixels.data;
           for (var i=0; i < data.length; i+=4) {
-            data[i] -= 55;
+            data[i] -= 35;
             data[i+1] -= 35;
-            data[i+2] -= 65;
+            data[i+2] -= 35;
           }
           ctx.putImageData(pixels,0,0);
-          
+
           var gradient = ctx.createLinearGradient(0,0,ctx.canvas.width,ctx.canvas.height);
-          gradient.addColorStop(0,"#1a0029");
+          gradient.addColorStop(0,"#9600ff");
           gradient.addColorStop(1,"#ffffff");
           ctx.fillStyle = gradient;
           ctx.globalAlpha = 0.3;
@@ -280,6 +290,7 @@
   var filterImage = function(filter) {
     loadImage();
     c.crossOrigin = "Anonymous";
+    c.setAttribute('crossOrigin', '');
     switch(filter){
       case "grayscale":
         filters.grayscale();
