@@ -1,14 +1,23 @@
 (function() {
-  var ctx;
+  var c,
+      ctx;
   var loadCanvas = function() {
-    var c = document.getElementById("canvas");
+    c = document.getElementById("canvas");
     ctx = c.getContext("2d");
-    ctx.fillStyle = "#FF0000";
-    ctx.fillRect(0,0,200,200);
+    ctx.fillStyle = "#e6e6e6";
+    ctx.fillRect(0,0,c.width,c.height);
   };
 
   var loadImage = function() {
-    ctx.drawImage(document.getElementById("uploaded-img"), ctx.canvas.width / 2, ctx.canvas.height / 2);
+    var img = document.getElementById("uploaded-img");
+    $("#canvas").attr('width',img.width);
+    $("#canvas").attr('height',img.height);
+ 
+    var canvasHeight = $("#canvas").height;
+    var canvasWidth = $("#canvas").width;
+
+    ctx.clearRect(0,0,c.width, canvasHeight);
+    ctx.drawImage(img, 0,0, img.width, img.height, c.width, canvasHeight);
   };
 
   var loadUploader = function() {
