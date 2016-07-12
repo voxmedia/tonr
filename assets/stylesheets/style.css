@@ -1,5 +1,5 @@
-/*///////////////////*/
-/* BASE (BAE) STYLES */
+/*/////////////*/
+/* BASE STYLES */
 
 body {
   margin: 0;
@@ -78,9 +78,19 @@ button,
   text-align: center;
 }
 .m-upload .button {
-  background-color: #f6aa1c;
+  background-color: #111;
+  color: #f6aa1c;
   padding: 10px;
   border-radius: 4px;
+  margin-top: 10px;
+  transition: all .2s;
+}
+.m-upload .button:first-child {
+  margin-top: 0;
+}
+.m-upload .button:hover {
+  background-color: #f6aa1c;
+  color: #fff;
 }
 
 .m-filter-select {
@@ -117,21 +127,8 @@ button,
 .m-filter-select::-webkit-scrollbar {
   width: 3px;
   height: 3px;
+  background-color: #111;
 }
 .m-filter-select::-webkit-scrollbar-thumb {
   background: #f6aa1c;
-}
-
-.m-context-nav {
-  position: fixed;
-  display: flex;
-  justify-content: space-between;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #f6aa1c;
-  height: 40px;
-  line-height: 40px;
-  color: #000;
-  z-index: 9;
 }
