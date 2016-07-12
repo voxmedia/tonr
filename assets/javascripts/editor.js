@@ -64,7 +64,8 @@
           ctx.putImageData(pixels,0,0);
         },
         glow: function() {
-          ctx.globalAlpha = 0.7;
+          ctx.fillStyle = "#ff9c52";
+          ctx.globalAlpha = 0.3;
           ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
 
           var pixels = ctx.getImageData(0,0,c.width,c.height);
@@ -76,10 +77,10 @@
               data[i] = factor * (data[i] - 128) + 128;
               data[i+1] = factor * (data[i+1] - 128) + 128;
               data[i+2] = factor * (data[i+2] - 128) + 128;
-          }
+          };
 
           // via http://www.qoncious.com/questions/changing-saturation-image-html5-canvas-using-javascript
-          var sv = 1.5; // saturation value. 0 = grayscale, 1 = original
+          var sv = 1.4; // saturation value. 0 = grayscale, 1 = original
 
           var luR = 0.3086; // constant to determine luminance of red. Similarly, for green and blue
           var luG = 0.6094;
