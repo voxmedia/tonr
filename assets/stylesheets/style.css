@@ -21,20 +21,28 @@ body {
   margin: 0;
   padding: 0;
   font-family: Montserrat, sans-serif;
-  box-sizing: border-box;
   background-color: #2c2c2c;
   color: #fff;
+  line-height: 1.2;
 }
 
 *,
 *:before,
 *:after {
   box-sizing: inherit;
+  line-height: inherit;
 }
 
 svg {
   fill: currentColor;
   height: 1em;
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-size: inherit;
 }
 
 /*////////*/
@@ -48,7 +56,26 @@ svg {
 /* NAV */
 .m-nav {
   background-color: #111;
-  padding: 2px 12px;
+  padding-left: 12px;
+  border-bottom: 1px solid #787878;
+  font-size: 20px;
+  line-height: 1;
+}
+.m-nav .l-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.m-nav__logo {
+  font-size: 30px;
+  padding: 7px 0 0;
+}
+
+.m-nav__profile {
+  color: #f68622;
+  border-left: 1px solid #787878;
+  padding: 12px;
+  display: block;
 }
 
 .m-img {
@@ -67,6 +94,8 @@ svg {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  border: 0 solid #787878;
+  border-width: 1px 1px 0 0;
 }
 
 .m-gallery__action {
@@ -74,8 +103,9 @@ svg {
   margin: 0;
   padding: 0;
   border: none;
-  margin: .5px;
   min-width: 30%;
+  border: 0 solid #787878;
+  border-width: 0 0 1px 1px;
 }
 @media (min-width: 600px) {
   .m-gallery__action {
@@ -85,8 +115,7 @@ svg {
 
 .m-gallery__action:focus {
   box-shadow: 0 0 0 2px #f6aa1c;
-  -webkit-appearance: none;
-  appearance: none;
+  outline:0;
   position: relative;
   z-index: 1;
 }
