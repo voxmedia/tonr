@@ -185,6 +185,7 @@
 
   var filterImage = function(filter) {
     loadImage();
+    c.crossOrigin = "Anonymous";
     switch(filter){
       case "grayscale":
         filters.grayscale();
@@ -202,7 +203,6 @@
         filters.glow();
         break;
       default:
-        console.log('filter not defined');
         break;
     }
   };
@@ -259,6 +259,9 @@
     loadUploader();
     $(".m-filter-select__filter").click(function(){
       filterImage($(this).data('filter'));
+    });
+    $("#download").click(function(){
+      window.open(c.toDataURL("image/jpeg"));
     });
   });
 })();
