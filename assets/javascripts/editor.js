@@ -164,7 +164,7 @@
   $(document).ready(function(){
     loadCanvas();
     loadUploader();
-    $(".m-gallery__action").click(function(){
+    $(".m-filter-select__filter").click(function(){
       filterImage($(this).data('filter'));
     });
   });
