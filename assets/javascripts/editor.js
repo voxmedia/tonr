@@ -171,8 +171,8 @@
   var loadCanvas = function() {
     c = document.getElementById("canvas");
     ctx = c.getContext("2d");
-    ctx.fillStyle = "#e6e6e6";
-    ctx.fillRect(0,0,c.width,c.height);
+    var img = document.getElementById("default-img");
+    drawImageProp(ctx, img);
   };
 
   var loadImage = function() {
