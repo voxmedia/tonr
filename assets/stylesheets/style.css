@@ -1,5 +1,5 @@
-/*///////////////////*/
-/* BASE (BAE) STYLES */
+/*/////////////*/
+/* BASE STYLES */
 
 body {
   margin: 0;
@@ -130,18 +130,4 @@ button,
 }
 .m-filter-select::-webkit-scrollbar-thumb {
   background: #f6aa1c;
-}
-
-.m-context-nav {
-  position: fixed;
-  display: flex;
-  justify-content: space-between;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #f6aa1c;
-  height: 40px;
-  line-height: 40px;
-  color: #000;
-  z-index: 9;
 }
