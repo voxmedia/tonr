@@ -33,10 +33,11 @@
           var pixels = ctx.getImageData(0,0,c.width,c.height);
           var data = pixels.data;
 
+          var brightness = -14;
           for (var i=0; i < data.length; i += 4) {
-            data[i] -= 14;
-            data[i+1] -= 14;
-            data[i+2] -= 14;
+            data[i] += 14;
+            data[i+1] += 14;
+            data[i+2] += 14;
           }
 
           ctx.putImageData(pixels,0,0);
@@ -61,7 +62,7 @@
           }
 
           ctx.putImageData(pixels,0,0);
-        },
+        }
       };
 
   /**
@@ -131,6 +132,7 @@
   };
 
   var filterImage = function(filter) {
+    loadImage();
     switch(filter){
       case "grayscale":
         filters.grayscale();
