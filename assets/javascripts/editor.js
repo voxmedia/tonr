@@ -176,6 +176,9 @@
   };
 
   var loadImage = function() {
+    if ($('.m-about').css('display') == 'block') {
+      $('.m-about').fadeOut();
+    }
     var img = document.getElementById("uploaded-img");
     drawImageProp(ctx, img);
   };
