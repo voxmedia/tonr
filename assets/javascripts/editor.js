@@ -1,6 +1,35 @@
 (function() {
   var c,
-      ctx;
+      ctx,
+      filters = {
+        grayscale: function(){
+          var pixels = ctx.getImageData(0,0,c.width,c.height);
+          var data = pixels.data;
+          for (var i=0; i < data.length; i+=4) {
+            var v = 0.2126 * data[i] + 0.7152 * data[i+1] + 0.0722 * data[i+2];
+            data[i] = data[i+1] = data[i+2] = v;
+          }
+          ctx.putImageData(pixels,0,0);
+        },
+        cottoncandy: function(){
+          var gradient = ctx.createLinearGradient(0,0,ctx.canvas.width,ctx.canvas.height);
+          gradient.addColorStop(0,"#f86e07");
+          gradient.addColorStop(1,"#fac5c5");
+          ctx.fillStyle = gradient;
+          ctx.globalAlpha = 0.2;
+          ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
+          ctx.globalAlpha = 1;
+        },
+        golden: function() {
+          var pixels = ctx.getImageData(0,0,c.width,c.height);
+          var data = pixels.data;
+          for (var i=0; i < data.length; i+=4) {
+            data[i] += 35;
+            data[i+2] -= 35;
+          }
+          ctx.putImageData(pixels,0,0);
+        }
+      };
 
   /**
    * By Ken Fyrstenberg Nilsen
@@ -65,15 +94,24 @@
 
   var loadImage = function() {
     var img = document.getElementById("uploaded-img");
-    // $("#canvas").attr('width',img.width);
-    // $("#canvas").attr('height',img.height);
- 
-    var canvasHeight = $("#canvas").height;
-    var canvasWidth = $("#canvas").width;
-
-    ctx.clearRect(0,0, canvasWidth, canvasHeight);
-    ///ctx.drawImage(img, 0,0, img.width, img.height, canvasWidth, canvasHeight);
     drawImageProp(ctx, img);
+  };
+
+  var filterImage = function(filter) {
+    switch(filter){
+      case "grayscale":
+        filters.grayscale();
+        break;
+      case "cottoncandy":
+        filters.cottoncandy();
+        break;
+      case "golden":
+        filters.golden();
+        break;
+      default:
+        console.log('filter not defined');
+        break;
+    }
   };
 
   var loadUploader = function() {
@@ -126,5 +164,8 @@
   $(document).ready(function(){
     loadCanvas();
     loadUploader();
+    $(".m-gallery__action").click(function(){
+      filterImage($(this).data('filter'));
+    });
   });
 })();
