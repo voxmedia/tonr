@@ -273,7 +273,7 @@
 
   var loadCanvas = function() {
     c = document.getElementById("canvas");
-    c.crossOrigin = "Anonymous";
+    ctx.canvas.crossOrigin = "Anonymous";
     ctx = c.getContext("2d");
     var img = document.getElementById("default-img");
     drawImageProp(ctx, img);
@@ -281,6 +281,7 @@
 
   var loadImage = function() {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    c.crossOrigin = "Anonymous";
     if ($('.m-about').css('display') == 'block') {
       $('.m-about').fadeOut();
     }
@@ -293,7 +294,6 @@
 
   var filterImage = function(filter) {
     loadImage();
-    c.crossOrigin = "Anonymous";
     switch(filter){
       case "grayscale":
         filters.grayscale();
