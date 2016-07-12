@@ -180,6 +180,9 @@
     if ($('.m-about').css('display') == 'block') {
       $('.m-about').fadeOut();
     }
+    if ($(".m-filter-select").css('display') == 'none') {
+      $(".m-filter-select").fadeIn();
+    }
     var img = document.getElementById("uploaded-img");
     drawImageProp(ctx, img);
   };
@@ -210,7 +213,7 @@
                   .click(function(){
                            window.open(c.toDataURL("image/jpeg"));
                          })
-                  .css('display','block');
+                  .fadeIn();
   };
 
   var loadUploader = function() {
