@@ -62,6 +62,54 @@
           }
 
           ctx.putImageData(pixels,0,0);
+        },
+        glow: function() {
+          ctx.globalAlpha = 0.7;
+          ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
+
+          var pixels = ctx.getImageData(0,0,c.width,c.height);
+          var data = pixels.data;
+
+          var contrast = 48;
+          var factor = ( 259 * (contrast + 255)) / (255 * (259 - contrast) );
+          for (var i = 0; i < data.length; i += 4) {
+              data[i] = factor * (data[i] - 128) + 128;
+              data[i+1] = factor * (data[i+1] - 128) + 128;
+              data[i+2] = factor * (data[i+2] - 128) + 128;
+          }
+
+          // via http://www.qoncious.com/questions/changing-saturation-image-html5-canvas-using-javascript
+          var sv = 1.5; // saturation value. 0 = grayscale, 1 = original
+
+          var luR = 0.3086; // constant to determine luminance of red. Similarly, for green and blue
+          var luG = 0.6094;
+          var luB = 0.0820;
+
+          var az = (1 - sv)*luR + sv;
+          var bz = (1 - sv)*luG;
+          var cz = (1 - sv)*luB;
+          var dz = (1 - sv)*luR;
+          var ez = (1 - sv)*luG + sv;
+          var fz = (1 - sv)*luB;
+          var gz = (1 - sv)*luR;
+          var hz = (1 - sv)*luG;
+          var iz = (1 - sv)*luB + sv;
+
+          for (var i = 0; i < data.length; i += 4){
+              var red = data[i]; // Extract original red color [0 to 255]. Similarly for green and blue below
+              var green = data[i + 1];
+              var blue = data[i + 2];
+
+              var saturatedRed = (az*red + bz*green + cz*blue);
+              var saturatedGreen = (dz*red + ez*green + fz*blue);
+              var saturateddBlue = (gz*red + hz*green + iz*blue);
+
+              data[i] = saturatedRed;
+              data[i + 1] = saturatedGreen;
+              data[i + 2] = saturateddBlue;
+          }
+
+          ctx.putImageData(pixels,0,0);
         }
       };
 
@@ -145,6 +193,9 @@
         break;
       case "galore":
         filters.galore();
+        break;
+      case "glow":
+        filters.glow();
         break;
       default:
         console.log('filter not defined');
