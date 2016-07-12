@@ -43,6 +43,7 @@ button,
 .l-wrapper {
   max-width: 500px;
   margin: 0 auto;
+  padding-bottom: 10px;
   background: #2c2c2c;
   box-shadow: 0 0 0 1px #787878;
 }
@@ -121,7 +122,7 @@ button,
   overflow: auto;
   font-size: 0;
   padding: 0;
-  margin: 10px -10px 0;
+  margin: 10px -10px -10px;
 }
 .m-filter-select__filter {
   display: block;
