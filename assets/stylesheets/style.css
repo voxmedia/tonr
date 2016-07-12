@@ -19,7 +19,7 @@ $text:          #fff;
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 0 0 40px;
   font-family: Montserrat, sans-serif;
   background-color: #2c2c2c;
   color: #fff;
@@ -43,6 +43,13 @@ svg {
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   font-size: inherit;
+  margin: 0;
+}
+
+button,
+.button {
+  outline:0;
+  cursor: pointer;
 }
 
 /*////////*/
@@ -52,8 +59,8 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 auto;
 }
 
-/*/////*/
-/* NAV */
+/*/////////*/
+/* MODULES */
 .m-nav {
   background-color: #111;
   padding-left: 12px;
@@ -87,7 +94,52 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .m-upload {
+  padding: 10px;
+  text-align: center;
+}
+.m-upload .button {
+  background-color: #f6aa1c;
+  padding: 10px;
+  border-radius: 4px;
+}
 
+.m-filter-select {
+  white-space: nowrap;
+  overflow: auto;
+  font-size: 0;
+  padding: 0 0;
+}
+.m-filter-select__filter {
+  display: inline-block;
+  width: 30%;
+  background: none;
+  color: inherit;
+  border: none;
+  margin: 0;
+  padding: 10px 5px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.m-filter-select__label {
+  background-color: #111;
+  display: block;
+  margin: 0 -5px;
+  padding: 10px;
+  border: 0 solid #787878;
+  border-width: 1px 0;
+}
+.m-filter-select__filter img {
+  display: block;
+  margin: 10px 0 0;
+}
+.m-filter-select::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+.m-filter-select::-webkit-scrollbar-thumb {
+  background: #f6aa1c;
 }
 
 .m-gallery {
@@ -115,7 +167,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .m-gallery__action:focus {
   box-shadow: 0 0 0 2px #f6aa1c;
-  outline:0;
   position: relative;
   z-index: 1;
 }
@@ -125,8 +176,16 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
 }
 
-/*////////////*/
-/* MAIN PHOTO */
-
-/*/////////*/
-/* GALLERY */
+.m-context-nav {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #f6aa1c;
+  height: 40px;
+  line-height: 40px;
+  color: #000;
+  z-index: 9;
+}
