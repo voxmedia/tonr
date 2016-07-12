@@ -67,6 +67,7 @@
           ctx.fillStyle = "#ff9c52";
           ctx.globalAlpha = 0.3;
           ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
+          ctx.globalAlpha = 1;
 
           var pixels = ctx.getImageData(0,0,c.width,c.height);
           var data = pixels.data;
@@ -127,6 +128,7 @@
           ctx.fillStyle = "#0646c8";
           ctx.globalAlpha = 0.4;
           ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
+          ctx.globalAlpha = 1;
 
           var pixels = ctx.getImageData(0,0,c.width,c.height);
           var data = pixels.data;
@@ -180,6 +182,7 @@
           ctx.fillStyle = "#ff4e4e";
           ctx.globalAlpha = 0.4;
           ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
+          ctx.globalAlpha = 1;
 
           var pixels = ctx.getImageData(0,0,c.width,c.height);
           var data = pixels.data;
@@ -277,6 +280,7 @@
   };
 
   var loadImage = function() {
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     if ($('.m-about').css('display') == 'block') {
       $('.m-about').fadeOut();
     }
@@ -290,7 +294,6 @@
   var filterImage = function(filter) {
     loadImage();
     c.crossOrigin = "Anonymous";
-    c.setAttribute('crossOrigin', '');
     switch(filter){
       case "grayscale":
         filters.grayscale();
