@@ -170,6 +170,7 @@
 
   var loadCanvas = function() {
     c = document.getElementById("canvas");
+    c.crossOrigin = "Anonymous";
     ctx = c.getContext("2d");
     var img = document.getElementById("default-img");
     drawImageProp(ctx, img);
@@ -205,6 +206,11 @@
       default:
         break;
     }
+    $("#download").unbind('click')
+                  .click(function(){
+                           window.open(c.toDataURL("image/jpeg"));
+                         })
+                  .css('display','block');
   };
 
   var loadUploader = function() {
@@ -259,9 +265,6 @@
     loadUploader();
     $(".m-filter-select__filter").click(function(){
       filterImage($(this).data('filter'));
-    });
-    $("#download").click(function(){
-      window.open(c.toDataURL("image/jpeg"));
     });
   });
 })();
