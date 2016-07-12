@@ -273,8 +273,8 @@
 
   var loadCanvas = function() {
     c = document.getElementById("canvas");
-    ctx.canvas.crossOrigin = "Anonymous";
     ctx = c.getContext("2d");
+    ctx.canvas.crossOrigin = "Anonymous";
     var img = document.getElementById("default-img");
     drawImageProp(ctx, img);
   };
