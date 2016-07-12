@@ -35,9 +35,9 @@
 
           var brightness = -14;
           for (var i=0; i < data.length; i += 4) {
-            data[i] += 14;
-            data[i+1] += 14;
-            data[i+2] += 14;
+            data[i] += brightness;
+            data[i+1] += brightness;
+            data[i+2] += brightness;
           }
 
           ctx.putImageData(pixels,0,0);
@@ -79,25 +79,24 @@
               data[i+2] = factor * (data[i+2] - 128) + 128;
           };
 
-          // via http://www.qoncious.com/questions/changing-saturation-image-html5-canvas-using-javascript
           var sv = 1.4; // saturation value. 0 = grayscale, 1 = original
 
-          var luR = 0.3086; // constant to determine luminance of red. Similarly, for green and blue
+          var luR = 0.3086;
           var luG = 0.6094;
           var luB = 0.0820;
 
-          var az = (1 - sv)*luR + sv;
-          var bz = (1 - sv)*luG;
-          var cz = (1 - sv)*luB;
-          var dz = (1 - sv)*luR;
-          var ez = (1 - sv)*luG + sv;
-          var fz = (1 - sv)*luB;
-          var gz = (1 - sv)*luR;
-          var hz = (1 - sv)*luG;
-          var iz = (1 - sv)*luB + sv;
+          var az = (1 - sv)*luR + sv,
+              bz = (1 - sv)*luG,
+              cz = (1 - sv)*luB,
+              dz = (1 - sv)*luR,
+              ez = (1 - sv)*luG + sv,
+              fz = (1 - sv)*luB,
+              gz = (1 - sv)*luR,
+              hz = (1 - sv)*luG,
+              iz = (1 - sv)*luB + sv;
 
           for (var i = 0; i < data.length; i += 4){
-              var red = data[i]; // Extract original red color [0 to 255]. Similarly for green and blue below
+              var red = data[i];
               var green = data[i + 1];
               var blue = data[i + 2];
 
@@ -111,6 +110,97 @@
           }
 
           ctx.putImageData(pixels,0,0);
+        },
+        newyork: function() {
+          var pixels = ctx.getImageData(0,0,c.width,c.height);
+          var data = pixels.data;
+
+          var brightness = -10;
+          for (var i=0; i < data.length; i += 4) {
+            data[i] += brightness;
+            data[i+1] += brightness;
+            data[i+2] += brightness;
+          }
+
+          var contrast = 56;
+          var factor = ( 259 * (contrast + 255)) / (255 * (259 - contrast) );
+          for (var i = 0; i < data.length; i += 4) {
+              data[i] = factor * (data[i] - 128) + 128;
+              data[i+1] = factor * (data[i+1] - 128) + 128;
+              data[i+2] = factor * (data[i+2] - 128) + 128;
+          };
+
+          ctx.putImageData(pixels,0,0);
+
+          ctx.fillStyle = "#0646c8";
+          ctx.globalAlpha = 0.4;
+          ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
+        },
+        oakland: function() {
+          var pixels = ctx.getImageData(0,0,c.width,c.height);
+          var data = pixels.data;
+
+          var contrast = 70;
+          var factor = ( 259 * (contrast + 255)) / (255 * (259 - contrast) );
+          for (var i = 0; i < data.length; i += 4) {
+              data[i] = factor * (data[i] - 128) + 128;
+              data[i+1] = factor * (data[i+1] - 128) + 128;
+              data[i+2] = factor * (data[i+2] - 128) + 128;
+          };
+
+          var sv = 1.4; // saturation value. 0 = grayscale, 1 = original
+
+          var luR = 0.3086;
+          var luG = 0.6094;
+          var luB = 0.0820;
+
+          var az = (1 - sv)*luR + sv,
+              bz = (1 - sv)*luG,
+              cz = (1 - sv)*luB,
+              dz = (1 - sv)*luR,
+              ez = (1 - sv)*luG + sv,
+              fz = (1 - sv)*luB,
+              gz = (1 - sv)*luR,
+              hz = (1 - sv)*luG,
+              iz = (1 - sv)*luB + sv;
+
+          for (var i = 0; i < data.length; i += 4){
+              var red = data[i];
+              var green = data[i + 1];
+              var blue = data[i + 2];
+
+              var saturatedRed = (az*red + bz*green + cz*blue);
+              var saturatedGreen = (dz*red + ez*green + fz*blue);
+              var saturateddBlue = (gz*red + hz*green + iz*blue);
+
+              data[i] = saturatedRed;
+              data[i + 1] = saturatedGreen;
+              data[i + 2] = saturateddBlue;
+          }
+
+          ctx.putImageData(pixels,0,0);
+
+          ctx.fillStyle = "#ff4e4e";
+          ctx.globalAlpha = 0.4;
+          ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
+        },
+        la: function() {
+          var pixels = ctx.getImageData(0,0,c.width,c.height);
+          var data = pixels.data;
+          for (var i=0; i < data.length; i+=4) {
+            data[i] -= 55;
+            data[i+1] -= 35;
+            data[i+2] -= 65;
+          }
+          ctx.putImageData(pixels,0,0);
+          
+          var gradient = ctx.createLinearGradient(0,0,ctx.canvas.width,ctx.canvas.height);
+          gradient.addColorStop(0,"#1a0029");
+          gradient.addColorStop(1,"#ffffff");
+          ctx.fillStyle = gradient;
+          ctx.globalAlpha = 0.3;
+          ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
+          ctx.globalAlpha = 1;
         }
       };
 
@@ -205,6 +295,15 @@
         break;
       case "glow":
         filters.glow();
+        break;
+      case "newyork":
+        filters.newyork();
+        break;
+      case "oakland":
+        filters.oakland();
+        break;
+      case "la":
+        filters.la();
         break;
       default:
         break;
