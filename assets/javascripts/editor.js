@@ -28,7 +28,40 @@
             data[i+2] -= 35;
           }
           ctx.putImageData(pixels,0,0);
-        }
+        },
+        galore: function(){
+          var pixels = ctx.getImageData(0,0,c.width,c.height);
+          var data = pixels.data;
+
+          for (var i=0; i < data.length; i += 4) {
+            data[i] -= 14;
+            data[i+1] -= 14;
+            data[i+2] -= 14;
+          }
+
+          ctx.putImageData(pixels,0,0);
+
+          var gradient = ctx.createLinearGradient(0,0,ctx.canvas.width,ctx.canvas.height);
+          gradient.addColorStop(0,"#ff3782");
+          gradient.addColorStop(1,"#07e9f1");
+          ctx.fillStyle = gradient;
+          ctx.globalAlpha = 0.3;
+          ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
+          ctx.globalAlpha = 1;
+
+          var pixels = ctx.getImageData(0,0,c.width,c.height);
+          var data = pixels.data;
+
+          var contrast = 15;
+          var factor = ( 259 * (contrast + 255)) / (255 * (259 - contrast) );
+          for (var i = 0; i < data.length; i += 4) {
+              data[i] = factor * (data[i] - 128) + 128;
+              data[i+1] = factor * (data[i+1] - 128) + 128;
+              data[i+2] = factor * (data[i+2] - 128) + 128;
+          }
+
+          ctx.putImageData(pixels,0,0);
+        },
       };
 
   /**
@@ -107,6 +140,9 @@
         break;
       case "golden":
         filters.golden();
+        break;
+      case "galore":
+        filters.galore();
         break;
       default:
         console.log('filter not defined');
