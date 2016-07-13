@@ -282,8 +282,12 @@
   var loadImage = function() {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     c.crossOrigin = "Anonymous";
-    $('.m-about').fadeOut();
-    $(".m-filter-select").fadeIn();
+    if ($('.m-about').css('display') == 'block') {
+      $('.m-about').fadeOut();
+    }
+    if ($(".m-filter-select").css('display') == 'none') {
+      $(".m-filter-select").fadeIn();
+    }
     var img = document.getElementById("uploaded-img");
     drawImageProp(ctx, img);
   };
@@ -319,6 +323,10 @@
       default:
         break;
     }
+    $("#download").unbind('click');
+    $("#download").click(function(){
+                           window.open(c.toDataURL("image/jpeg"));
+                         });
     $("#download").fadeIn();
   };
 
@@ -372,14 +380,8 @@
   $(document).ready(function(){
     loadCanvas();
     loadUploader();
-
-    $(document).on('click','.m-filter-select__filter', function(){
+    $(".m-filter-select__filter").click(function(){
       filterImage($(this).data('filter'));
-    });
-
-    $(document).on('click','#download', function(){
-      console.log("download clicked");
-      window.open(c.toDataURL("image/jpeg"));
     });
   });
 })();
