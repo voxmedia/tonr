@@ -374,5 +374,9 @@
     $(".m-filter-select__filter").click(function(){
       filterImage($(this).data('filter'));
     });
+
+    $("#tweet-photo").click(function(){
+      //tweet photo here
+    });
   });
 })();
