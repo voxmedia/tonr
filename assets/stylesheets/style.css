@@ -126,7 +126,7 @@ button,
 }
 .m-filter-select__filter {
   display: block;
-  min-width: 30%;
+  min-width: 120px;
   background: none;
   color: inherit;
   border: none;
@@ -143,6 +143,7 @@ button,
   padding: 10px;
   border: 0 solid #787878;
   border-width: 1px 0;
+  white-space: nowrap;
 }
 .m-filter-select__filter img {
   display: block;
