@@ -363,7 +363,7 @@
       fileHandler(file);
     });
 
-    $('#upload').click( function(e){
+    $(document).on('click','#upload', function(e){
       $('#file-input').click();
       $('#file-input').on('change', function(e){
         file = e.target.files[0];
@@ -383,7 +383,6 @@
       reader.readAsDataURL(file);
       reader.onload = function(event) {
         $('#uploaded-img').attr('src',event.target.result);
-        loadImage();
       };
     }
   };

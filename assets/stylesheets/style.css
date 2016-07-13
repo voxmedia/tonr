@@ -18,6 +18,10 @@ body {
   line-height: inherit;
 }
 
+p {
+	font-family: Roboto, sans-serif;
+}
+
 svg {
   fill: currentColor;
   height: 1em;
