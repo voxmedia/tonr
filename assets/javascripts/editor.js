@@ -288,6 +288,9 @@
     if ($(".m-filter-select").css('display') == 'none') {
       $(".m-filter-select").fadeIn();
     }
+    if ($("#download").css('display') == 'none') {
+      $("#download").fadeIn();
+    }
     var img = document.getElementById("uploaded-img");
     drawImageProp(ctx, img);
   };
@@ -323,11 +326,12 @@
       default:
         break;
     }
-    $("#download").unbind('click');
-    $("#download").click(function(){
-                           window.open(c.toDataURL("image/jpeg"));
-                         });
-    $("#download").fadeIn();
+
+    $(document).on('click','#download',function(){
+      console.log('clocked download');
+      window.open(c.toDataURL("image/jpeg"));
+    })
+
   };
 
   var loadUploader = function() {
