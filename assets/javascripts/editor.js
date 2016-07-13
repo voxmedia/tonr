@@ -1,6 +1,7 @@
 (function() {
   var c,
       ctx,
+      imageUrl,
       filters = {
         grayscale: function() {
           ctx.canvas.crossOrigin = "Anonymous";
@@ -298,6 +299,9 @@
     }
     if ($("#download").css('display') == 'none') {
       $("#download").fadeIn();
+      $(document).on('click','#download',function(){
+        window.open(imageUrl);
+      });
     }
     var img = document.getElementById("uploaded-img");
     drawImageProp(ctx, img);
@@ -334,13 +338,7 @@
       default:
         break;
     }
-
-    $("#download").unbind('click');
-    $(document).on('click','#download',function(){
-      console.log('clocked download');
-      window.open(c.toDataURL("image/jpeg"));
-    })
-
+    imageUrl = c.toDataURL("image/jpeg");
   };
 
   var loadUploader = function() {
