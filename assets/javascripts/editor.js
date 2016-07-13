@@ -304,7 +304,7 @@
       $("#download").fadeIn();
       $("#download").click(function(){
         console.log('download clicked');
-        window.open(imageUrl);
+        window.open(c.toDataURL('image/jpeg'));
       });
     }
     var img = document.getElementById("uploaded-img");
@@ -368,10 +368,11 @@
       fileHandler(file);
     });
 
-    $(document).on('click','#upload', function(e){
-      $('#file-input').click();
-      $('#file-input').on('change', function(e){
+    $(document).on('click','#file-input', function(e){
+      // $('#file-input').click();
+      $(this).on('change', function(e){
         file = e.target.files[0];
+        console.log("hey")
         fileHandler(file);
         $(this).replaceWith($(this).clone());
       });
