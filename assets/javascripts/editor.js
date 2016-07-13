@@ -295,6 +295,7 @@
       $("#download").click(function(){
         window.open(c.toDataURL('image/jpeg'));
       });
+      $("#tweet-photo").fadeIn();
     }
     var img = document.getElementById("uploaded-img");
     renderImageCover(ctx, img);
