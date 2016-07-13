@@ -335,6 +335,7 @@
         break;
     }
 
+    $("#download").unbind('click');
     $(document).on('click','#download',function(){
       console.log('clocked download');
       window.open(c.toDataURL("image/jpeg"));
