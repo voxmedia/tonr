@@ -1,8 +1,11 @@
 (function() {
   var c,
       ctx,
+      imageUrl,
+      downloaded,
       filters = {
-        grayscale: function(){
+        grayscale: function() {
+          ctx.canvas.crossOrigin = "Anonymous";
           var pixels = ctx.getImageData(0,0,c.width,c.height);
           var data = pixels.data;
           for (var i=0; i < data.length; i+=4) {
@@ -11,7 +14,8 @@
           }
           ctx.putImageData(pixels,0,0);
         },
-        cottoncandy: function(){
+        cottoncandy: function() {
+          ctx.canvas.crossOrigin = "Anonymous";
           var gradient = ctx.createLinearGradient(0,0,ctx.canvas.width,ctx.canvas.height);
           gradient.addColorStop(0,"#f86e07");
           gradient.addColorStop(1,"#fac5c5");
@@ -21,6 +25,7 @@
           ctx.globalAlpha = 1;
         },
         golden: function() {
+          ctx.canvas.crossOrigin = "Anonymous";
           var pixels = ctx.getImageData(0,0,c.width,c.height);
           var data = pixels.data;
           for (var i=0; i < data.length; i+=4) {
@@ -29,7 +34,8 @@
           }
           ctx.putImageData(pixels,0,0);
         },
-        galore: function(){
+        galore: function() {
+          ctx.canvas.crossOrigin = "Anonymous";
           var pixels = ctx.getImageData(0,0,c.width,c.height);
           var data = pixels.data;
 
@@ -64,6 +70,7 @@
           ctx.putImageData(pixels,0,0);
         },
         glow: function() {
+          ctx.canvas.crossOrigin = "Anonymous";
           ctx.fillStyle = "#ff9c52";
           ctx.globalAlpha = 0.3;
           ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
@@ -113,6 +120,7 @@
           ctx.putImageData(pixels,0,0);
         },
         newyork: function() {
+          ctx.canvas.crossOrigin = "Anonymous";
           var pixels = ctx.getImageData(0,0,c.width,c.height);
           var data = pixels.data;
 
@@ -144,6 +152,7 @@
           ctx.putImageData(pixels,0,0);
         },
         oakland: function() {
+          ctx.canvas.crossOrigin = "Anonymous";
           var pixels = ctx.getImageData(0,0,c.width,c.height);
           var data = pixels.data;
 
@@ -198,6 +207,7 @@
           ctx.putImageData(pixels,0,0);
         },
         la: function() {
+          ctx.canvas.crossOrigin = "Anonymous";
           var pixels = ctx.getImageData(0,0,c.width,c.height);
           var data = pixels.data;
           for (var i=0; i < data.length; i+=4) {
@@ -288,12 +298,22 @@
     if ($(".m-filter-select").css('display') == 'none') {
       $(".m-filter-select").fadeIn();
     }
+    if (!downloaded) {
+      $("div").unbind('click');
+      $("#download").unbind('click');
+      $("#download").fadeIn();
+      $("#download").click(function(){
+        console.log('download clicked');
+        window.open(c.toDataURL('image/jpeg'));
+      });
+    }
     var img = document.getElementById("uploaded-img");
     drawImageProp(ctx, img);
   };
 
   var filterImage = function(filter) {
     loadImage();
+    downloaded = true;
     ctx.canvas.crossOrigin = "Anonymous";
     switch(filter){
       case "grayscale":
@@ -323,11 +343,7 @@
       default:
         break;
     }
-    $("#download").unbind('click');
-    $("#download").click(function(){
-                           window.open(c.toDataURL("image/jpeg"));
-                         });
-    $("#download").fadeIn();
+    imageUrl = c.toDataURL("image/jpeg");
   };
 
   var loadUploader = function() {
@@ -352,10 +368,11 @@
       fileHandler(file);
     });
 
-    $('#upload').click( function(e){
-      $('#file-input').click();
-      $('#file-input').on('change', function(e){
+    $(document).on('click','#file-input', function(e){
+      // $('#file-input').click();
+      $(this).on('change', function(e){
         file = e.target.files[0];
+        console.log("hey")
         fileHandler(file);
         $(this).replaceWith($(this).clone());
       });

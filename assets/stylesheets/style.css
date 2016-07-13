@@ -17,6 +17,10 @@ body {
   line-height: inherit;
 }
 
+p {
+	font-family: Roboto, sans-serif;
+}
+
 svg {
   fill: currentColor;
   height: 1em;
@@ -113,7 +117,7 @@ button,
   text-align: center;
 }
 
-.m-upload .button {
+.m-upload .m-button {
   background-color: #111;
   color: #f6aa1c;
   padding: 10px;
@@ -127,7 +131,10 @@ button,
   margin-top: 0;
 }
 
-.m-upload .button:hover {
+.m-upload .m-button:first-child {
+  margin-top: 0;
+}
+.m-upload .m-button:hover {
   background-color: #f6aa1c;
   color: #fff;
 }
