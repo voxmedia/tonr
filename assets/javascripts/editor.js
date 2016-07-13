@@ -59,10 +59,17 @@
           }
           return data;
         },
-        gradient: function(colorOne, colorTwo, opacity) {
+        gradient: function(opacity, colorOne, colorTwo, colorThree) {
           var gradient = ctx.createLinearGradient(0,0,ctx.canvas.width,ctx.canvas.height);
+          
           gradient.addColorStop(0,colorOne);
-          gradient.addColorStop(1,colorTwo);
+          if (colorThree) {
+            gradient.addColorStop(.5,colorTwo);
+            gradient.addColorStop(1,colorThree);
+          } else {
+            gradient.addColorStop(1,colorTwo);
+          }
+
           ctx.fillStyle = gradient;
           ctx.globalAlpha = opacity;
           ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
@@ -88,7 +95,7 @@
           helpers.savePixels(pixels);
         },
         cottoncandy: function() {
-          helpers.gradient("#f86e07", "#fac5c5", 0.2);
+          helpers.gradient(0.2,"#f86e07", "#fac5c5");
         },
         golden: function() {
           var pixels = helpers.loadPixels();
@@ -109,7 +116,7 @@
 
           helpers.savePixels(pixels);
 
-          helpers.gradient("#ff3782", "#07e9f1", 0.3);
+          helpers.gradient(0.3,"#ff3782", "#07e9f1");
 
           pixels = helpers.loadPixels();
           data = pixels.data;
@@ -176,7 +183,21 @@
 
           helpers.savePixels(pixels);
 
-          helpers.gradient("#9600ff", "#ffffff", 0.3);
+          helpers.gradient(0.3, "#9600ff", "#ffffff");
+        },
+        sorbet: function() {
+          helpers.gradient(0.4, "#070264", "#fe58d9", "#fbfaaf");
+        },
+        cherrybomb: function() {
+          helpers.gradient(0.55, "#ff5ac7", "#f31515", "#fffec4");
+
+          var pixels = helpers.loadPixels();
+          var data = pixels.data;
+
+          data = helpers.brightness(data, 10);
+          data = helpers.contrast(data, -30);
+
+          helpers.savePixels(pixels);
         }
       };
 
@@ -279,6 +300,12 @@
         break;
       case "la":
         filters.la();
+        break;
+      case "sorbet":
+        filters.sorbet();
+        break;
+      case "cherrybomb":
+        filters.cherrybomb();
         break;
       default:
         break;
