@@ -282,18 +282,15 @@
   var loadImage = function() {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     c.crossOrigin = "Anonymous";
-    if ($('.m-about').css('display') == 'block') {
-      $('.m-about').fadeOut();
-    }
-    if ($(".m-filter-select").css('display') == 'none') {
-      $(".m-filter-select").fadeIn();
-    }
+    $('.m-about').fadeOut();
+    $(".m-filter-select").fadeIn();
     var img = document.getElementById("uploaded-img");
     drawImageProp(ctx, img);
   };
 
   var filterImage = function(filter) {
     loadImage();
+    ctx.canvas.crossOrigin = "Anonymous";
     switch(filter){
       case "grayscale":
         filters.grayscale();
@@ -322,36 +319,32 @@
       default:
         break;
     }
-    $("#download").unbind('click')
-                  .click(function(){
-                           window.open(c.toDataURL("image/jpeg"));
-                         })
-                  .fadeIn();
+    $("#download").fadeIn();
   };
 
   var loadUploader = function() {
-    $('#button').on('dragenter', function (e){
+    $('#upload').on('dragenter', function (e){
       safeTarget(e);
       $(this).addClass('hover');
     });
 
-    $('#button').on('dragleave', function (e){
+    $('#upload').on('dragleave', function (e){
       safeTarget(e);
       $(this).removeClass('hover');
     });
 
-    $('#button').on('dragover', function (e){
+    $('#upload').on('dragover', function (e){
       safeTarget(e);
     });
 
-    $('#button').on('drop', function (e){
+    $('#upload').on('drop', function (e){
       safeTarget(e);
       file = e.originalEvent.dataTransfer.files[0];
       $(this).removeClass('hover');
       fileHandler(file);
     });
 
-    $('#button').click( function(e){
+    $('#upload').click( function(e){
       $('#file-input').click();
       $('#file-input').on('change', function(e){
         file = e.target.files[0];
@@ -379,8 +372,14 @@
   $(document).ready(function(){
     loadCanvas();
     loadUploader();
-    $(".m-filter-select__filter").click(function(){
+
+    $(document).on('click','.m-filter-select__filter', function(){
       filterImage($(this).data('filter'));
+    });
+
+    $(document).on('click','#download', function(){
+      console.log("download clicked");
+      window.open(c.toDataURL("image/jpeg"));
     });
   });
 })();
