@@ -198,6 +198,34 @@
           data = helpers.contrast(data, -30);
 
           helpers.savePixels(pixels);
+        },
+        strut: function() {
+          var pixels = helpers.loadPixels();
+          var data = pixels.data;
+
+          data = helpers.brightness(data, 10);
+          data = helpers.contrast(data, 20);
+          data = helpers.saturation(data, 2);
+
+          helpers.savePixels(pixels);
+
+          helpers.gradient(0.2, "#270062", "#f90c70");
+        },
+        moon: function() {
+          helpers.gradient(0.6, "#282828", "#7a7a7a", "#e4e4e4");
+
+          var pixels = helpers.loadPixels();
+          var data = pixels.data;
+
+          for (var i=0; i < data.length; i+=4) {
+            var v = 0.2126 * data[i] + 0.7152 * data[i+1] + 0.0722 * data[i+2];
+            data[i] = data[i+1] = data[i+2] = v;
+          }
+
+          data = helpers.brightness(data, -10);
+          data = helpers.contrast(data, 70);
+
+          helpers.savePixels(pixels);
         }
       };
 
@@ -306,6 +334,12 @@
         break;
       case "cherrybomb":
         filters.cherrybomb();
+        break;
+      case "strut":
+        filters.strut();
+        break;
+      case "moon":
+        filters.moon();
         break;
       default:
         break;
