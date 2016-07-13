@@ -115,21 +115,23 @@ button,
 }
 
 .m-upload {
-  padding: 10px 10px 0;
-  text-align: center;
+  padding: 5px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .m-upload .button {
+  text-align: center;
   background-color: #111;
   color: #f6aa1c;
   padding: 10px;
   border-radius: 4px;
-  margin-top: 10px;
+  flex: 1;
+  margin: 5px;
   -webkit-transition: all .2s;
           transition: all .2s;
-}
-.m-upload .button:first-child {
-  margin-top: 0;
 }
 .m-upload .button:hover {
   background-color: #f6aa1c;
@@ -144,7 +146,7 @@ button,
   overflow: auto;
   font-size: 0;
   padding: 0;
-  margin: 10px 0 -10px;
+  margin: 0 0 -10px;
 }
 
 .m-filter-select__filter {
