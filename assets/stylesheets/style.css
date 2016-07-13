@@ -144,7 +144,7 @@ button,
   overflow: auto;
   font-size: 0;
   padding: 0;
-  margin: 10px -10px -10px;
+  margin: 10px 0 -10px;
 }
 
 .m-filter-select__filter {
