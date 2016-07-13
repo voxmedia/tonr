@@ -5,7 +5,6 @@
       downloaded,
       filters = {
         grayscale: function() {
-          ctx.canvas.crossOrigin = "Anonymous";
           var pixels = ctx.getImageData(0,0,c.width,c.height);
           var data = pixels.data;
           for (var i=0; i < data.length; i+=4) {
@@ -15,7 +14,6 @@
           ctx.putImageData(pixels,0,0);
         },
         cottoncandy: function() {
-          ctx.canvas.crossOrigin = "Anonymous";
           var gradient = ctx.createLinearGradient(0,0,ctx.canvas.width,ctx.canvas.height);
           gradient.addColorStop(0,"#f86e07");
           gradient.addColorStop(1,"#fac5c5");
@@ -25,7 +23,6 @@
           ctx.globalAlpha = 1;
         },
         golden: function() {
-          ctx.canvas.crossOrigin = "Anonymous";
           var pixels = ctx.getImageData(0,0,c.width,c.height);
           var data = pixels.data;
           for (var i=0; i < data.length; i+=4) {
@@ -35,7 +32,6 @@
           ctx.putImageData(pixels,0,0);
         },
         galore: function() {
-          ctx.canvas.crossOrigin = "Anonymous";
           var pixels = ctx.getImageData(0,0,c.width,c.height);
           var data = pixels.data;
 
@@ -70,7 +66,6 @@
           ctx.putImageData(pixels,0,0);
         },
         glow: function() {
-          ctx.canvas.crossOrigin = "Anonymous";
           ctx.fillStyle = "#ff9c52";
           ctx.globalAlpha = 0.3;
           ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
@@ -120,7 +115,6 @@
           ctx.putImageData(pixels,0,0);
         },
         newyork: function() {
-          ctx.canvas.crossOrigin = "Anonymous";
           var pixels = ctx.getImageData(0,0,c.width,c.height);
           var data = pixels.data;
 
@@ -152,7 +146,6 @@
           ctx.putImageData(pixels,0,0);
         },
         oakland: function() {
-          ctx.canvas.crossOrigin = "Anonymous";
           var pixels = ctx.getImageData(0,0,c.width,c.height);
           var data = pixels.data;
 
@@ -207,7 +200,6 @@
           ctx.putImageData(pixels,0,0);
         },
         la: function() {
-          ctx.canvas.crossOrigin = "Anonymous";
           var pixels = ctx.getImageData(0,0,c.width,c.height);
           var data = pixels.data;
           for (var i=0; i < data.length; i+=4) {
@@ -291,7 +283,6 @@
 
   var loadImage = function() {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    c.crossOrigin = "Anonymous";
     if ($('.m-about').css('display') == 'block') {
       $('.m-about').fadeOut();
     }
@@ -303,7 +294,6 @@
       $("#download").unbind('click');
       $("#download").fadeIn();
       $("#download").click(function(){
-        console.log('download clicked');
         window.open(c.toDataURL('image/jpeg'));
       });
     }
@@ -314,7 +304,6 @@
   var filterImage = function(filter) {
     loadImage();
     downloaded = true;
-    ctx.canvas.crossOrigin = "Anonymous";
     switch(filter){
       case "grayscale":
         filters.grayscale();
@@ -372,7 +361,6 @@
       // $('#file-input').click();
       $(this).on('change', function(e){
         file = e.target.files[0];
-        console.log("hey")
         fileHandler(file);
         $(this).replaceWith($(this).clone());
       });
