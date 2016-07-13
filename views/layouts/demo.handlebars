@@ -35,8 +35,10 @@
   </article>
 
   <!-- iphone wrapper -->
-  <div class="l-wrapper">
-    {{{body}}}
+  <div class="m-phone">
+    <div class="l-wrapper">
+      {{{body}}}
+    </div>
   </div>
   <!-- end iphone wrapper -->
 </div>
@@ -62,11 +64,11 @@
     position: absolute;
     left: 0;
     right: 0;
-    background-color: #2c2c2c;
+    background-color: #000;
     height: 140px;
     z-index: -1;
   }
-  .l-wrapper {
+  .m-phone {
     min-width: 320px;
     height: 568px;
     position: relative;
@@ -74,7 +76,7 @@
     margin-top: -30px;
     margin-left: 2em;
   }
-  .l-wrapper::before {
+  .m-phone::before {
     content: '';
     background-image: url('/images/iphone.png');
     position: absolute;
@@ -85,6 +87,11 @@
     height: 812px;
     z-index: 10;
     pointer-events: none;
+  }
+  .l-wrapper {
+    overflow: auto;
+    width: 320px;
+    height: 568px;
   }
   .m-about {
     background-image: url('/images/pam.jpg');
