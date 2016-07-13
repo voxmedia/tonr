@@ -2,6 +2,7 @@
   var c,
       ctx,
       imageUrl,
+      downloaded,
       filters = {
         grayscale: function() {
           ctx.canvas.crossOrigin = "Anonymous";
@@ -297,9 +298,12 @@
     if ($(".m-filter-select").css('display') == 'none') {
       $(".m-filter-select").fadeIn();
     }
-    if ($("#download").css('display') == 'none') {
+    if (!downloaded) {
+      $("div").unbind('click');
+      $("#download").unbind('click');
       $("#download").fadeIn();
-      $(document).on('click','#download',function(){
+      $("#download").click(function(){
+        console.log('download clicked');
         window.open(imageUrl);
       });
     }
@@ -309,6 +313,7 @@
 
   var filterImage = function(filter) {
     loadImage();
+    downloaded = true;
     ctx.canvas.crossOrigin = "Anonymous";
     switch(filter){
       case "grayscale":
@@ -383,6 +388,7 @@
       reader.readAsDataURL(file);
       reader.onload = function(event) {
         $('#uploaded-img').attr('src',event.target.result);
+        loadImage();
       };
     }
   };
