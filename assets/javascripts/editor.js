@@ -180,7 +180,7 @@
         }
       };
 
-  var drawImageProp = function(ctx, img, x, y, w, h, offsetX, offsetY) {
+  var renderImageCover = function(ctx, img, x, y, w, h, offsetX, offsetY) {
     // By Ken Fyrstenberg Nilsen
     // See http://stackoverflow.com/questions/21961839/simulation-background-size-cover-in-canvas
 
@@ -229,7 +229,7 @@
     ctx = c.getContext("2d");
     ctx.canvas.crossOrigin = "Anonymous";
     var img = document.getElementById("default-img");
-    drawImageProp(ctx, img);
+    renderImageCover(ctx, img);
   };
 
   var loadImage = function() {
@@ -248,7 +248,7 @@
       });
     }
     var img = document.getElementById("uploaded-img");
-    drawImageProp(ctx, img);
+    renderImageCover(ctx, img);
   };
 
   var filterImage = function(filter) {
