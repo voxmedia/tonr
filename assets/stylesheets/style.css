@@ -117,7 +117,7 @@ button,
   text-align: center;
 }
 
-.m-upload .m-button {
+.m-upload .button {
   background-color: #111;
   color: #f6aa1c;
   padding: 10px;
@@ -126,15 +126,10 @@ button,
   -webkit-transition: all .2s;
           transition: all .2s;
 }
-
 .m-upload .button:first-child {
   margin-top: 0;
 }
-
-.m-upload .m-button:first-child {
-  margin-top: 0;
-}
-.m-upload .m-button:hover {
+.m-upload .button:hover {
   background-color: #f6aa1c;
   color: #fff;
 }
