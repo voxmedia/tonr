@@ -1,3 +1,5 @@
+## [tonr.co](http://tonr.co)
+
 ## About
 Photography has a [long](http://www.racked.com/2015/7/7/8906343/instagram-racism) [history](http://priceonomics.com/how-photography-was-optimized-for-white-skin/) of [racism](http://www.npr.org/sections/codeswitch/2014/04/16/303721251/light-and-dark-the-racial-biases-that-remain-in-photography). Design is supposed to be unbiased but as we all know, intentionally or not, there is always room for human error and subconscious prejudice. When film photography was first developed, technicians measured good contrast, color and brightness using a reference photo that included a white model; these were called ‘Shirley’ cards. As a result of film manufacturers only using images of white people as reference, film has been notoriously bad at producing good images of people of color.
 
