@@ -140,6 +140,16 @@ button,
   color: #fff;
 }
 
+.m-disclaimer {
+  padding: 0 5px;
+  font-size: 10px;
+  text-align: center;
+}
+
+.m-disclaimer p {
+  margin: 0;
+}
+
 .m-filter-select {
   display: -webkit-box;
   display: -webkit-flex;
