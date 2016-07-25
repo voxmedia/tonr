@@ -15,8 +15,8 @@ class User < ActiveRecord::Base
       user.uid = auth.uid
       user.name = user_name
       user.email = auth.try(:email)
-      user.oauth_token = auth.credentials.oauth_token
-      user.oauth_token_secret = auth.credentials.oauth_token_secret
+      user.oauth_token = auth.credentials.token
+      user.oauth_token_secret = auth.credentials.secret
       logger.debug(auth.inspect)
       user.save!
     end

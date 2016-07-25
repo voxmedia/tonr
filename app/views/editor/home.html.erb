@@ -34,38 +34,42 @@
 </div>
 
 <div class="m-upload">
-  <% if @user.present? %>
+  <% if current_user.present? %>
     <%= form_for(@picture, html: {class: "uploadPicture", data: @data}) do |f| %>
-      <%= f.hidden_field :user_id, value: @user.id %>
-      <%= f.file_field :picture_url, style: "display: none;" %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <input type="file" id="picture_picture_url" name="file-input" style="display: none;"/>
       <label for="picture_picture_url" class="button">
         <svg viewBox="0 0 36 33">
           <path d="M36,1.32V31.68a1.29,1.29,0,0,1-.37.93,1.26,1.26,0,0,1-.95.39H1.32a1.27,1.27,0,0,1-.93-0.39A1.27,1.27,0,0,1,0,31.68V1.32A1.27,1.27,0,0,1,.39.39,1.27,1.27,0,0,1,1.32,0H34.68a1.26,1.26,0,0,1,.95.39A1.3,1.3,0,0,1,36,1.32ZM33,3H3V25.11l7.41-5.46,8.94,3.93L17.13,18.9l8.79-9.54L33,18V3ZM13.11,7.65a3.88,3.88,0,0,1,1.17,2.85,4,4,0,0,1-4,4,4,4,0,0,1-4-4,4,4,0,0,1,4-4A3.88,3.88,0,0,1,13.11,7.65Z"/>
         </svg>
         Select photo
       </label>
-      <%= button_tag(type: 'submit', class: "button download", id: "download", style: "display: none;") do %>
+      <div class="button download" id="save" style="display: none;">
         <svg viewBox="0 0 36 33">
           <path d="M36,1.32V31.68a1.29,1.29,0,0,1-.37.93,1.26,1.26,0,0,1-.95.39H1.32a1.27,1.27,0,0,1-.93-0.39A1.27,1.27,0,0,1,0,31.68V1.32A1.27,1.27,0,0,1,.39.39,1.27,1.27,0,0,1,1.32,0H34.68a1.26,1.26,0,0,1,.95.39A1.3,1.3,0,0,1,36,1.32ZM33,3H3V25.11l7.41-5.46,8.94,3.93L17.13,18.9l8.79-9.54L33,18V3ZM13.11,7.65a3.88,3.88,0,0,1,1.17,2.85,4,4,0,0,1-4,4,4,4,0,0,1-4-4,4,4,0,0,1,4-4A3.88,3.88,0,0,1,13.11,7.65Z"/>
         </svg>
-        Save photo
-      <% end %>
+        Save Photo
+      </div>
     <% end %>
+    <div class="button download" id="download" style="display: none;">
+      <svg viewBox="0 0 36 33">
+        <path d="M36,1.32V31.68a1.29,1.29,0,0,1-.37.93,1.26,1.26,0,0,1-.95.39H1.32a1.27,1.27,0,0,1-.93-0.39A1.27,1.27,0,0,1,0,31.68V1.32A1.27,1.27,0,0,1,.39.39,1.27,1.27,0,0,1,1.32,0H34.68a1.26,1.26,0,0,1,.95.39A1.3,1.3,0,0,1,36,1.32ZM33,3H3V25.11l7.41-5.46,8.94,3.93L17.13,18.9l8.79-9.54L33,18V3ZM13.11,7.65a3.88,3.88,0,0,1,1.17,2.85,4,4,0,0,1-4,4,4,4,0,0,1-4-4,4,4,0,0,1,4-4A3.88,3.88,0,0,1,13.11,7.65Z"/>
+      </svg>
+      Post to Twitter
+    </div>
   <% else %>
-   <input id="fileupload" type="file" name="files[]" data-url="/pictures" multiple style="display: none;">
-    <label for="fileupload" class="button">
+    <input type="file" id="picture_picture_url" name="file-input" style="display: none;"/>
+    <label for="picture_picture_url" class="button">
       <svg viewBox="0 0 36 33">
         <path d="M36,1.32V31.68a1.29,1.29,0,0,1-.37.93,1.26,1.26,0,0,1-.95.39H1.32a1.27,1.27,0,0,1-.93-0.39A1.27,1.27,0,0,1,0,31.68V1.32A1.27,1.27,0,0,1,.39.39,1.27,1.27,0,0,1,1.32,0H34.68a1.26,1.26,0,0,1,.95.39A1.3,1.3,0,0,1,36,1.32ZM33,3H3V25.11l7.41-5.46,8.94,3.93L17.13,18.9l8.79-9.54L33,18V3ZM13.11,7.65a3.88,3.88,0,0,1,1.17,2.85,4,4,0,0,1-4,4,4,4,0,0,1-4-4,4,4,0,0,1,4-4A3.88,3.88,0,0,1,13.11,7.65Z"/>
       </svg>
       Select photo
     </label>
-  <% end %>
-  <% unless @user.present? %>
-    <div class="button" id="manual-download" class="download" style="display: none;">
-      <svg viewBox="0 0 33 36">
-        <path d="M0.75,27H32.19a0.81,0.81,0,0,1,.57.22,0.7,0.7,0,0,1,.24.53V36H0V27.75a0.73,0.73,0,0,1,.21-0.54A0.73,0.73,0,0,1,.75,27ZM21,12V0H12V12H3L16.35,27l13.5-15H21Zm9,18H27v1.5h3V30Z"/>
+    <div class="button download" id="manual-download" style="display: none;">
+      <svg viewBox="0 0 36 33">
+        <path d="M36,1.32V31.68a1.29,1.29,0,0,1-.37.93,1.26,1.26,0,0,1-.95.39H1.32a1.27,1.27,0,0,1-.93-0.39A1.27,1.27,0,0,1,0,31.68V1.32A1.27,1.27,0,0,1,.39.39,1.27,1.27,0,0,1,1.32,0H34.68a1.26,1.26,0,0,1,.95.39A1.3,1.3,0,0,1,36,1.32ZM33,3H3V25.11l7.41-5.46,8.94,3.93L17.13,18.9l8.79-9.54L33,18V3ZM13.11,7.65a3.88,3.88,0,0,1,1.17,2.85,4,4,0,0,1-4,4,4,4,0,0,1-4-4,4,4,0,0,1,4-4A3.88,3.88,0,0,1,13.11,7.65Z"/>
       </svg>
-      Save photo
+      Save Photo
     </div>
   <% end %>
   <img id="uploaded-img" style="display: none;">

@@ -3,7 +3,6 @@ class EditorController < ApplicationController
 
   def home
     @picture = Picture.new
-    @user = User.find(session[:user_id])
     @data = { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host }
   end
 

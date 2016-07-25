@@ -290,7 +290,7 @@
       $(".m-filter-select").fadeIn();
     }
     if (!downloadable) {
-      // download()
+      download()
     }
     var img = document.getElementById("uploaded-img");
     renderImageCover(ctx, img);
@@ -299,64 +299,95 @@
   var download = function() {
     $(".download").unbind('click');
     $(".download").fadeIn();
-    $("#manual-download").click(function(){
-      window.open(c.toDataURL('image/jpeg'));
-    });
-    $('.uploadPicture').on('submit', function(e){
-      e.preventDefault();
-      $(this).find("input:file").each(function(i, elem) {
-        var fileInput    = $(elem);
-        var form         = $(fileInput.parents('form:first'));
-        console.log(fileInput)
-        var submitButton = form.find('button[type="submit"]');
-        console.log(submitButton)
-        var progressBar  = $("<div class='bar'> AYO</div>");
-        var barContainer = $("<div class='progress'></div>").append(progressBar);
-        fileInput.after(barContainer);
-        fileInput.fileupload({
-          fileInput:       fileInput,
-          url:             form.data('url'),
-          type:            'POST',
-          autoUpload:       true,
-          formData:         form.data('form-data'),
-          paramName:        'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
-          dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
-          replaceFileInput: false,
-          progressall: function (e, data) {
-            var progress = parseInt(data.loaded / data.total * 100, 10);
-            progressBar.css('width', progress + '%')
-          },
-          start: function (e) {
-            submitButton.prop('disabled', true);
-            console.log('got here')
-            progressBar.
-              css('background', 'green').
-              css('display', 'block').
-              css('width', '0%').
-              text("Loading...");
-          },
-          done: function(e, data) {
-            submitButton.prop('disabled', false);
-            progressBar.text("Uploading done");
-
-            // extract key and generate URL from response
-            var key   = $(data.jqXHR.responseXML).find("Key").text();
-            var url   = '//' + form.data('host') + '/' + key;
-
-            // create hidden field
-            var input = $("<input />", { type:'hidden', name: fileInput.attr('name'), value: url })
-            form.append(input);
-          },
-          fail: function(e, data) {
-            submitButton.prop('disabled', false);
-
-            progressBar.
-              css("background", "red").
-              text("Failed");
-          }
-        });
+    $("#manual-download").on('click', function() {
+      window.open(c.toDataURL('image/jpeg'))
+    })
+    $("#download").on('click', function(){
+      var formdata = decodeImagePath();
+      console.log(formdata)
+      $.ajax({
+        url: "/tweet",
+        type: "POST",
+        data: formdata,
+        processData: false,
+        contentType: false,
+      }).done(function(respond){
+        console.log(respond);
       });
     })
+
+    $("#save").on('click', function() {
+      var formdata = decodeImagePath();
+      console.log('here', formdata);
+      $.ajax({
+        url: "/upload",
+        type: "POST",
+        data: formdata,
+        processData: false,
+        contentType: false,
+        }).done(function(respond){
+          console.log(respond);
+        });
+      })
+      // console.log('tyvgbuhnjm')
+      // var form         = $("uploadPicture");
+      // console.log(fileInput)
+      // var submitButton = $(this)
+      // console.log(submitButton)
+      // var progressBar  = $("<div class='bar'> AYO</div>");
+      // var barContainer = $("<div class='progress'></div>").append(progressBar);
+      // fileInput.after(barContainer);
+      // fileInput.fileupload({
+      //   fileInput:       decodeImagePath(),
+      //   url:             form.data('url'),
+      //   type:            'POST',
+      //   autoUpload:       true,
+      //   formData:         form.data('form-data'),
+      //   paramName:        'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
+      //   dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
+      //   replaceFileInput: false,
+      //   progressall: function (e, data) {
+      //     var progress = parseInt(data.loaded / data.total * 100, 10);
+      //     progressBar.css('width', progress + '%')
+      //   },
+      //   start: function (e) {
+      //     submitButton.prop('disabled', true);
+      //     console.log('got here')
+      //     progressBar.
+      //       css('background', 'green').
+      //       css('display', 'block').
+      //       css('width', '0%').
+      //       text("Loading...");
+      //   },
+      //   done: function(e, data) {
+      //     submitButton.prop('disabled', false);
+      //     progressBar.text("Uploading done");
+
+      //     console.log('YAY')
+      //   },
+      //   fail: function(e, data) {
+      //     submitButton.prop('disabled', false);
+
+      //     progressBar.
+      //       css("background", "red").
+      //       text("Failed");
+      //   }
+      // });
+    // })
+  }
+
+  var decodeImagePath = function() {
+    // http://stackoverflow.com/questions/19032406/convert-html5-canvas-into-file-to-be-uploaded
+    var blobBin = atob(c.toDataURL('image/jpeg').split(',')[1]);
+    var array = [];
+    for(var i = 0; i < blobBin.length; i++) {
+        array.push(blobBin.charCodeAt(i));
+    }
+    var file=new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+
+    var formdata = new FormData();
+    formdata.append("file", file);
+    return formdata;
   }
 
   var filterImage = function(filter) {
@@ -409,7 +440,6 @@
   var loadUploader = function() {
     $(document).on('click','#picture_picture_url', function(e){
       $(this).on('change', function(e){
-        console.log(e.target.files)
         file = e.target.files[0];
         fileHandler(file);
         $(this).replaceWith($(this).clone());
@@ -417,75 +447,12 @@
     });
 
     var fileHandler = function(file){
-      // var reader = new FileReader();
-      // reader.readAsDataURL(file);
-      // console.log(reader)
-      $('.uploadPicture').find("input:file").each(function(i, elem) {
-        var fileInput    = $(elem);
-        var form         = $(fileInput.parents('form:first'));
-        console.log(fileInput)
-        var submitButton = form.find('button[type="submit"]');
-        console.log(submitButton)
-        var progressBar  = $("<div class='bar'> AYO</div>");
-        var barContainer = $("<div class='progress'></div>").append(progressBar);
-        fileInput.after(barContainer);
-        fileInput.fileupload({
-          dataType: 'json',
-          done: function (e, data) {
-            console.log(data.result.files)
-            // $.each(data.result.files, function (index, file) {
-            //     $('<p/>').text(file.name).appendTo(document.body);
-            //   })
-            }
-          });
-        })
-              // fileInput.fileupload({
-              //   fileInput:       fileInput,
-              //   url:             form.data('url'),
-              //   type:            'POST',
-              //   autoUpload:       true,
-              //   formData:         form.data('form-data'),
-              //   paramName:        'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
-              //   dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
-              //   replaceFileInput: false,
-              //   progressall: function (e, data) {
-              //     var progress = parseInt(data.loaded / data.total * 100, 10);
-              //     progressBar.css('width', progress + '%')
-              //   },
-              //   start: function (e) {
-              //     submitButton.prop('disabled', true);
-              //     console.log('got here')
-              //     progressBar.
-              //       css('background', 'green').
-              //       css('display', 'block').
-              //       css('width', '0%').
-              //       text("Loading...");
-              //   },
-              //   done: function(e, data) {
-              //     submitButton.prop('disabled', false);
-              //     progressBar.text("Uploading done");
-
-              //     // extract key and generate URL from response
-              //     var key   = $(data.jqXHR.responseXML).find("Key").text();
-              //     var url   = '//' + form.data('host') + '/' + key;
-
-              //     // create hidden field
-              //     var input = $("<input />", { type:'hidden', name: fileInput.attr('name'), value: url })
-              //     form.append(input);
-              //   },
-              //   fail: function(e, data) {
-              //     submitButton.prop('disabled', false);
-
-              //     progressBar.
-              //       css("background", "red").
-              //       text("Failed");
-              //   }
-              // });
-            // });
-      // reader.onload = function(event) {
-      //   $('#uploaded-img').attr('src',event.target.result);
-      //   loadImage();
-      // };
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function(event) {
+        $('#uploaded-img').attr('src',event.target.result);
+        loadImage();
+      };
     }
   };
 
