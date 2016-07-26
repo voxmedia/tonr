@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    @tones = @user.pictures
   end
 
   def tweet
     begin
-      client.update_with_media("I used http://tonr.co for this, and you should too!", params[:file])
+      client.update_with_media("I used http://tonr.co for this, and you should too! #tonr", params[:file])
     rescue Twitter::Error
       flash[:error] = "Your tōnr couldn't be tweeted :/"
       redirect_to "/"

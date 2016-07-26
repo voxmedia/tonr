@@ -315,65 +315,6 @@
         console.log(respond);
       });
     })
-
-    $("#save").on('click', function() {
-      var formdata = decodeImagePath();
-      console.log('here', formdata);
-      $.ajax({
-        url: "/upload",
-        type: "POST",
-        data: formdata,
-        processData: false,
-        contentType: false,
-        }).done(function(respond){
-          console.log(respond);
-        });
-      })
-      // console.log('tyvgbuhnjm')
-      // var form         = $("uploadPicture");
-      // console.log(fileInput)
-      // var submitButton = $(this)
-      // console.log(submitButton)
-      // var progressBar  = $("<div class='bar'> AYO</div>");
-      // var barContainer = $("<div class='progress'></div>").append(progressBar);
-      // fileInput.after(barContainer);
-      // fileInput.fileupload({
-      //   fileInput:       decodeImagePath(),
-      //   url:             form.data('url'),
-      //   type:            'POST',
-      //   autoUpload:       true,
-      //   formData:         form.data('form-data'),
-      //   paramName:        'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
-      //   dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
-      //   replaceFileInput: false,
-      //   progressall: function (e, data) {
-      //     var progress = parseInt(data.loaded / data.total * 100, 10);
-      //     progressBar.css('width', progress + '%')
-      //   },
-      //   start: function (e) {
-      //     submitButton.prop('disabled', true);
-      //     console.log('got here')
-      //     progressBar.
-      //       css('background', 'green').
-      //       css('display', 'block').
-      //       css('width', '0%').
-      //       text("Loading...");
-      //   },
-      //   done: function(e, data) {
-      //     submitButton.prop('disabled', false);
-      //     progressBar.text("Uploading done");
-
-      //     console.log('YAY')
-      //   },
-      //   fail: function(e, data) {
-      //     submitButton.prop('disabled', false);
-
-      //     progressBar.
-      //       css("background", "red").
-      //       text("Failed");
-      //   }
-      // });
-    // })
   }
 
   var decodeImagePath = function() {

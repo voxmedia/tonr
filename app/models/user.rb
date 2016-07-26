@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :pictures
+  has_many :pictures, dependent: :destroy
 
   validates_uniqueness_of :name
 

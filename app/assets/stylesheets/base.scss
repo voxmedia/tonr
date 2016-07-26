@@ -1,3 +1,12 @@
+///MIXINS
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
 /*/////////////*/
 /* BASE STYLES */
 body {
@@ -8,20 +17,6 @@ body {
   background-image: url('/images/bg.png');
   color: #fff;
   line-height: 1.2;
-}
-.progress {
-  max-width: 600px;
-  position: relative;
-  z-index: 2000;
-  margin:    0.2em 0 0.2em 0;
-    height:  30px;
-    font-size: 30px;
-}
-
-.progress .bar {
-  padding-left: 0.2em;
-  color:   white;
-  display: none;
 }
 
 *,
@@ -55,6 +50,31 @@ button,
   outline: 0;
   display: block;
   cursor: pointer;
+}
+
+.flash {
+  max-width: 500px;
+  border-radius: 5px;
+  text-align: center;
+  margin: 20px auto;
+  padding: 11px 0;
+  cursor: pointer;
+  @include clearfix;
+  &.error {
+    background: rgba(#bd3131, 0.8);
+  }
+  &.success {
+    background: rgba(#229822, 0.8);
+  }
+  span {
+    float: right;
+    margin-right: 10px;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 /*////////*/

@@ -17,16 +17,14 @@
 </head>
 <body>
 
-   <% flash.each do |name, msg| -%>
-    <%= content_tag :div, msg, class: 'flash', 'data-type' => name %>
+  <% flash.each do |name, msg| -%>
+  <div class="flash <%= name %>">
+    <%= msg %> <span> x </span>
+  </div>
   <% end -%>
 <div class="l-wrapper">
   <%= yield %>
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.12.5/js/jquery.iframe-transport.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.12.5/js/jquery.fileupload.min.js"></script>
 
 </body>
 </html>
