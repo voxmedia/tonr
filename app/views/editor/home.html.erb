@@ -70,7 +70,7 @@
     </div>
   <% end %>
   <img id="uploaded-img" style="display: none;">
-  <img id="default-img" style="display: none;" src="/assets/bg.jpg">
+  <%= image_tag "bg.jpg", id: "default-img", style: "display: none" %>
 </div>
 <div class="m-disclaimer">
 <p><i>For your privacy, all processing is done in the browser.<br/>Your images never leave your device.</i></p>
@@ -78,15 +78,15 @@
 <div class="m-filter-select" style="display: none;">
   <button class="m-filter-select__filter" data-filter="grayscale">
     <span class="m-filter-select__label">Grayscale</span>
-    <img class="m-gallery__img" src="/assets/grayscale.jpg">
+    <%= image_tag "grayscale.jpg", class:"m-gallery__img" %>
   </button>
   <button class="m-filter-select__filter" data-filter="cottoncandy">
     <span class="m-filter-select__label">Cotton Candy</span>
-    <img class="m-gallery__img" src="/assets/cottoncandy.jpg">
+    <%= image_tag "cottoncandy.jpg", class:"m-gallery__img" %>
   </button>
   <button class="m-filter-select__filter" data-filter="golden">
     <span class="m-filter-select__label">Golden</span>
-    <img class="m-gallery__img" src="/assets/golden.jpg">
+    <%= image_tag "golden.jpg", class:"m-gallery__img" %>
   </button>
   <button class="m-filter-select__filter" data-filter="galore">
     <span class="m-filter-select__label">Galore</span>
@@ -94,34 +94,34 @@
   </button>
   <button class="m-filter-select__filter" data-filter="glow">
     <span class="m-filter-select__label">Glow</span>
-    <img class="m-gallery__img" src="/assets/glow.jpg">
+    <%= image_tag "glow.jpg", class:"m-gallery__img" %>
   </button>
   <button class="m-filter-select__filter" data-filter="newyork">
     <span class="m-filter-select__label">New York</span>
-    <img class="m-gallery__img" src="/assets/newyork.jpg">
+    <%= image_tag "newyork.jpg", class:"m-gallery__img" %>
   </button>
   <button class="m-filter-select__filter" data-filter="oakland">
     <span class="m-filter-select__label">Oakland</span>
-    <img class="m-gallery__img" src="/assets/oakland.jpg">
+    <%= image_tag "oakland.jpg", class:"m-gallery__img" %>
   </button>
   <button class="m-filter-select__filter" data-filter="la">
     <span class="m-filter-select__label">LA</span>
-    <img class="m-gallery__img" src="/assets/la.jpg">
+    <%= image_tag "la.jpg", class:"m-gallery__img" %>
   </button>
   <button class="m-filter-select__filter" data-filter="sorbet">
     <span class="m-filter-select__label">Sorbet</span>
-    <img class="m-gallery__img" src="/assets/sorbet.jpg">
+    <%= image_tag "sorbet.jpg", class:"m-gallery__img" %>
   </button>
   <button class="m-filter-select__filter" data-filter="cherrybomb">
     <span class="m-filter-select__label">Cherry Bomb</span>
-    <img class="m-gallery__img" src="/assets/cherrybomb.jpg">
+    <%= image_tag "cherrybomb.jpg", class:"m-gallery__img" %>
   </button>
   <button class="m-filter-select__filter" data-filter="strut">
     <span class="m-filter-select__label">Strut</span>
-    <img class="m-gallery__img" src="/assets/strut.jpg">
+    <%= image_tag "strut.jpg", class:"m-gallery__img" %>
   </button>
   <button class="m-filter-select__filter" data-filter="moon">
     <span class="m-filter-select__label">Moon</span>
-    <img class="m-gallery__img" src="/assets/moon.jpg">
+    <%= image_tag "moon.jpg", class:"m-gallery__img" %>
   </button>
 </div>
