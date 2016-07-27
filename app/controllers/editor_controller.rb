@@ -3,7 +3,7 @@ class EditorController < ApplicationController
 
   def home
     @picture = Picture.new
-    @data = { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host }
+    # @data = { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host }
   end
 
   private
