@@ -1,0 +1,58 @@
+.demo-logo svg {
+  height: 100px;
+  margin: 20px 0;
+}
+article a {
+  color: #f6aa1c;
+}
+a.demo-logo {
+  color: #fff;
+}
+.wrap {
+  display: flex;
+  max-width: 900px;
+  margin: 10% auto 10%;
+}
+.wrap:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: #000;
+  height: 140px;
+  z-index: -1;
+}
+.m-phone {
+  min-width: 320px;
+  height: 568px;
+  position: relative;
+  transform: scale(.8) translateY(-70px);
+  margin-left: 2em;
+}
+.m-phone::before {
+  content: '';
+  background-image: asset-data-url("iphone.png");
+  position: absolute;
+  display: block;
+  top: -138px;
+  left: -83px;
+  width: 553px;
+  height: 1014px;
+  z-index: -1;
+}
+.l-wrapper {
+  overflow: auto;
+  width: 375px;
+  height: 667px;
+}
+.l-wrapper::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.m-about {
+  background-image: asset-data-url("galore.jpg");
+  background-size: 100%;
+}
+.m-about * {
+  display: none;
+}

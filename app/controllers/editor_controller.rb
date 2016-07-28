@@ -1,9 +1,13 @@
 class EditorController < ApplicationController
+  layout "demo", only: [:demo]
   # before_action :set_s3_direct_post, only: [:home]
 
   def home
     @picture = Picture.new
     # @data = { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host }
+  end
+
+  def demo
   end
 
   private

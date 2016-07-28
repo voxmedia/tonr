@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "editor#home"
+  get "/demo", to: "editor#demo"
   resources :users
   resources :pictures, except: [:update, :edit]
 
